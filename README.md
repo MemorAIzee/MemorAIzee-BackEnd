@@ -1,1 +1,1 @@
-👉 MemorAize Backend
+MemorAize Backend
