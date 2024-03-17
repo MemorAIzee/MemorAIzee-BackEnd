@@ -10,6 +10,7 @@ group = 'SteveJapchae'
 jar{
 	archiveBaseName = 'memoraize'
 	version = '0.0.1-SNAPSHOT'
+	enabled = false
 }
 
 java {
