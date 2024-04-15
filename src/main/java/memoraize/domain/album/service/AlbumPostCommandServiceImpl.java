@@ -19,14 +19,14 @@ import memoraize.domain.photo.service.PhotoCommandService;
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
-public class AlbumPostCommandServiceImpl implements AlbumPostCommandService{
+public class AlbumPostCommandServiceImpl implements AlbumPostCommandService {
 
 	private final AlbumPostRepository albumPostRepository;
 	private final PhotoCommandService photoCommandService;
 
 	@Override
 	@Transactional
-	public AlbumPostResponseDTO.addAlbumPostResultDTO addAlbum(AlbumPostRequestDTO.addAlbumPostDTO request){
+	public AlbumPostResponseDTO.AddAlbumPostResultDTO addAlbum(AlbumPostRequestDTO.addAlbumPostDTO request) {
 		Album albumPost = AlbumPostConverter.toAlbumPost(request);
 		List<Photo> photoList = photoCommandService.savePhotoImages(request.getImages());
 		albumPost.addPhotoImages(photoList);

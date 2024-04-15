@@ -18,6 +18,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import memoraize.domain.album.entity.Album;
+import memoraize.domain.review.entity.Place;
 import memoraize.global.entity.BaseEntity;
 
 @Entity
@@ -47,8 +48,16 @@ public class Photo extends BaseEntity {
 	@JoinColumn(name = "album_id", nullable = false)
 	private Album album;
 
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "place_id")
+	private Place place;
+
 	// 연관관계 편의 메서드
 	public void setAlbum(Album album){
 		this.album = album;
+	}
+
+	public void setPlace(Place place){
+		this.place = place;
 	}
 }

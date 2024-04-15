@@ -13,7 +13,9 @@ import com.amazonaws.services.s3.model.PutObjectResult;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import memoraize.domain.photo.entity.Uuid;
+import memoraize.global.aws.exception.S3FileSaveException;
 import memoraize.global.config.AmazonConfig;
+import memoraize.global.enums.statuscode.ErrorStatus;
 
 @Slf4j
 @Component
@@ -33,6 +35,7 @@ public class AmazonS3Manager {
 			log.info("result={}", putObjectResult.getContentMd5());
 		} catch (IOException e) {
 			log.error("error at AmazonS3Manager uploadFile : {}", (Object)e.getStackTrace());
+			throw new S3FileSaveException(ErrorStatus._S3_FILE_SAVE_ERROR);
 		}
 
 		return amazonS3.getUrl(amazonConfig.getBucket(), keyName).toString();
@@ -42,6 +45,8 @@ public class AmazonS3Manager {
 		return amazonConfig.getPhotoImagePath() + '/' + uuid.getUuid();
 	}
 
-	public String generateReviewImageKeyName(Uuid uuid) {return amazonConfig.getReviewImagePath() + '/' + uuid.getUuid();}
+	public String generateReviewImageKeyName(Uuid uuid) {
+		return amazonConfig.getReviewImagePath() + '/' + uuid.getUuid();
+	}
 
 }

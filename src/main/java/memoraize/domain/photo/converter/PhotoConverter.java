@@ -9,7 +9,7 @@ import memoraize.domain.photo.web.dto.PhotoRequestDTO;
 import memoraize.domain.photo.web.dto.PhotoResponseDTO;
 
 public class PhotoConverter {
-	public static PhotoResponseDTO.saveReviewResultDTO toSaveReviewResultDTO(Photo photo){
+	public static PhotoResponseDTO.saveReviewResultDTO toSaveReviewResultDTO(Photo photo) {
 		return PhotoResponseDTO.saveReviewResultDTO.builder()
 			.imageId(photo.getId())
 			.imageUrl(photo.getImageUrl())
@@ -17,14 +17,18 @@ public class PhotoConverter {
 			.build();
 	}
 
-	public static Photo toPhoto(String imageUrl, String comment){
+	public static Photo toPhoto(String imageUrl, String comment) {
 		return Photo.builder()
 			.comment(comment)
 			.imageUrl(imageUrl)
 			.build();
 	}
 
-	public static PhotoRequestDTO.savePhotoDTO toSavePhotoDTO(List<MultipartFile> request){
+	public static Photo toPhoto(String imageUrl) {
+		return toPhoto(imageUrl, null);
+	}
+
+	public static PhotoRequestDTO.savePhotoDTO toSavePhotoDTO(List<MultipartFile> request) {
 		return PhotoRequestDTO.savePhotoDTO.builder()
 			.photoImages(request)
 			.build();
