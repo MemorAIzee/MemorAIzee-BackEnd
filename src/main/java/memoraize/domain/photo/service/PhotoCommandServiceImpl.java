@@ -211,7 +211,7 @@ public class PhotoCommandServiceImpl implements PhotoCommandService {
 	}
 
 	@Transactional
-	public List<PhotoHashTag> getPhotoHashTags(MultipartFile image, byte[] imageBytes, Photo photo) {
+	public synchronized List<PhotoHashTag> getPhotoHashTags(MultipartFile image, byte[] imageBytes, Photo photo) {
 
 		// Google Vision API 호출
 		try {
